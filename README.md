@@ -1,7 +1,7 @@
 * Classic example of a currency converter which takes inout from user and converts it to actual values.
 * Makes use of the currency exchange microservice to get the exchange rate and then proceed with the calculation.
 
-## Using Ribbon to Loadbalance between the curreny exchange Micro Services.
+## Using Ribbon to Loadbalance between the currency exchange Micro Services.
 
 ![ribbon lb](https://user-images.githubusercontent.com/6800366/40484769-55804472-5f7a-11e8-8b68-89f462f6eb39.PNG)
 

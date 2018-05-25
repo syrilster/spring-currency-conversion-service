@@ -1,7 +1,12 @@
-* Classic example of a currency converter which takes inout from user and converts it to actual values.
+* Classic example of a currency converter which takes input from the user and converts it to actual values.
 * Makes use of the currency exchange microservice to get the exchange rate and then proceed with the calculation.
 
 ## Using Ribbon to Loadbalance between the currency exchange Micro Services.
+* Using Feign Client we were able to set up a  proxy between services. (@FeignClient(name = "currency-exchange-service", url = "localhost:8000")).
+* Above annotation has the server URL hardcoded. This is an issue if we want to have more instances of the same microservices as the URL changes.
+* This can be mitigated using Ribbon LB. @RibbonClient(name = "currency-exchange-service")
+* Ribbon brings in a centralized way to define the list of servers in application properties. Ex: currency-exchange-service.ribbon.listOfServers=http://localhost:8000, http://localhost:8001
+* This is still a static list of servers and not dynamically managed.
 
 ![ribbon lb](https://user-images.githubusercontent.com/6800366/40484769-55804472-5f7a-11e8-8b68-89f462f6eb39.PNG)
 

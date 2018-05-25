@@ -1,5 +1,6 @@
-* Classic example of a currency converter which takes input from the user and converts it to actual values.
-* Makes use of the currency exchange microservice to get the exchange rate and then proceed with the calculation.
+## What does this Microservice provide?
+* This is a classic example of a currency converter service which will take a currency "from" and "to" as the input and convert it to actual values. Ex: Convert USD to INR.
+* This makes use of the currency exchange microservice to get the exchange rate(conversion multiple) and then proceed with the calculation.
 
 ## Using Ribbon to Loadbalance between the currency exchange Micro Services.
 * Using Feign Client we were able to set up a  proxy between services. (@FeignClient(name = "currency-exchange-service", url = "localhost:8000")).

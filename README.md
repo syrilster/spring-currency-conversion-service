@@ -21,5 +21,12 @@
 
 ## Distributed Tracing 
 * Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.
+* Distributed tracing is required to track the request as it is going through multiple systems.
+* A call route to currency conversion service can be shown below:
+    * First User calls the Currency conversion API
+    * Request goes to Zuul log filter to do logging.
+    * Then Currency conversion tries to call the exchange microservice via a proxy of Zuull api gateway.
+    * Request goes to Zuul(API gateway) log filter to do logging.
+    * Then Zuul api gateway calls the currency exchange service. 
 
 

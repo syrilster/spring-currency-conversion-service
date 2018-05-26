@@ -33,5 +33,8 @@
 * Distributed tracing allows us to check where the exact failure is. This is because sleuth assigns one unique id for all requests in the chain.
 * Centralized log tracing using ELK Stack. "ELK" is the acronym for three open source projects: Elasticsearch, Logstash, and Kibana. Elasticsearch is a search and analytics engine. Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a "stash" like Elasticsearch. Kibana lets users visualize data with charts and graphs in Elasticsearch.
 
+![zipkin distributed tracing](https://user-images.githubusercontent.com/6800366/40572726-5b37e85e-60d1-11e8-853d-7640058493f7.PNG)
+
+
 
 

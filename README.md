@@ -28,5 +28,6 @@
     * Then Currency conversion tries to call the exchange microservice via a proxy of Zuull api gateway.
     * Request goes to Zuul(API gateway) log filter to do logging.
     * Then Zuul api gateway calls the currency exchange service. 
+* Distributed tracing allows us to check where the exact failure is. This is because sleuth assigns one unique id for all requests in the chain.
 
 

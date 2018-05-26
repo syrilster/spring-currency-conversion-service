@@ -22,6 +22,8 @@
 ## Distributed Tracing 
 * Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.
 * Distributed tracing is required to track the request as it is going through multiple systems.
+* Slueth allows to have a unique identifier for each request via currency-calculation service ---> CurrencyExchangeService --> Limits service.
+* Slueth provided unique id will be used in Zipkin tracing.
 * A call route to currency conversion service can be shown below:
     * First User calls the Currency conversion API
     * Request goes to Zuul log filter to do logging.
@@ -29,5 +31,7 @@
     * Request goes to Zuul(API gateway) log filter to do logging.
     * Then Zuul api gateway calls the currency exchange service. 
 * Distributed tracing allows us to check where the exact failure is. This is because sleuth assigns one unique id for all requests in the chain.
+* Centralized log tracing using ELK Stack. "ELK" is the acronym for three open source projects: Elasticsearch, Logstash, and Kibana. Elasticsearch is a search and analytics engine. Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a "stash" like Elasticsearch. Kibana lets users visualize data with charts and graphs in Elasticsearch.
+
 
 

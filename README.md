@@ -19,4 +19,7 @@
 
 ![naming server](https://user-images.githubusercontent.com/6800366/40485250-a5bdfe06-5f7b-11e8-82e7-ffcc4102d49c.PNG)
 
+## Distributed Tracing 
+* Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.
+
 

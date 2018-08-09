@@ -8,6 +8,7 @@
 * This can be mitigated using Ribbon LB. @RibbonClient(name = "currency-exchange-service")
 * Ribbon brings in a centralized way to define the list of servers in application properties. Ex: currency-exchange-service.ribbon.listOfServers=http://localhost:8000, http://localhost:8001
 * This is still a static list of servers and not dynamically managed.
+* To use a different LB apart from the default Round Robin check here (https://github.com/Netflix/ribbon/wiki/Working-with-load-balancers#common-rules).
 
 ![ribbon lb](https://user-images.githubusercontent.com/6800366/40484769-55804472-5f7a-11e8-8b68-89f462f6eb39.PNG)
 
@@ -21,5 +22,20 @@
 
 ## Distributed Tracing 
 * Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.
+* Distributed tracing is required to track the request as it is going through multiple systems.
+* Slueth allows to have a unique identifier for each request via currency-calculation service ---> CurrencyExchangeService --> Limits service.
+* Slueth provided unique id will be used in Zipkin tracing.
+* A call route to currency conversion service can be shown below:
+    * First User calls the Currency conversion API
+    * Request goes to Zuul log filter to do logging.
+    * Then Currency conversion tries to call the exchange microservice via a proxy of Zuull api gateway.
+    * Request goes to Zuul(API gateway) log filter to do logging.
+    * Then Zuul api gateway calls the currency exchange service. 
+* Distributed tracing allows us to check where the exact failure is. This is because sleuth assigns one unique id for all requests in the chain.
+* Centralized log tracing using ELK Stack. "ELK" is the acronym for three open source projects: Elasticsearch, Logstash, and Kibana. Elasticsearch is a search and analytics engine. Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a "stash" like Elasticsearch. Kibana lets users visualize data with charts and graphs in Elasticsearch.
+
+![zipkin distributed tracing](https://user-images.githubusercontent.com/6800366/40572726-5b37e85e-60d1-11e8-853d-7640058493f7.PNG)
+
+
 
 

@@ -20,6 +20,16 @@
 
 ![naming server](https://user-images.githubusercontent.com/6800366/40485250-a5bdfe06-5f7b-11e8-82e7-ffcc4102d49c.PNG)
 
+
+## API Gateways (Zuul)
+Micro services should interact with each other via API gateway for below reasons:
+
+* Common place for Authentication, Authorization and security
+* Rate limits
+* Fault Tolerance - Configure some default response if the actual service is not available
+* Service Aggregation - Aggregate several different services as one service call for an external caller
+
+
 ## Distributed Tracing 
 * Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.
 * Distributed tracing is required to track the request as it is going through multiple systems.

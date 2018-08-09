@@ -29,6 +29,10 @@ Micro services should interact with each other via API gateway for below reasons
 * Fault Tolerance - Configure some default response if the actual service is not available
 * Service Aggregation - Aggregate several different services as one service call for an external caller
 
+**Requesting a microservice using zuul API gateway endpoint**
+http://localhost:8765/{application-name}/{uri}
+Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/USD/to/INR
+
 ![zuul filter](https://user-images.githubusercontent.com/6800366/43877693-aadbe44e-9bde-11e8-8873-ad0f64f9be61.png)
 
 

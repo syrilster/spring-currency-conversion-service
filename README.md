@@ -2,6 +2,10 @@
 * This is a classic example of a currency converter service which will take a currency "from" and "to" as the input and convert it to actual values. Ex: Convert USD to INR.
 * This makes use of the currency exchange microservice to get the exchange rate(conversion multiple) and then proceed with the calculation.
 
+## Endpoints
+* Currency conversion Service: http://localhost:8765/currency-conversion-service/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}
+* Currency Exchange Service: http://localhost:8765/currency-exchange-service/currency-exchange/from/{from}/to/{to}
+
 ## Using Ribbon to Loadbalance between the currency exchange Micro Services.
 * Using Feign Client we were able to set up a  proxy between services. (@FeignClient(name = "currency-exchange-service", url = "localhost:8000")).
 * Above annotation has the server URL hardcoded. This is an issue if we want to have more instances of the same microservices as the URL changes.

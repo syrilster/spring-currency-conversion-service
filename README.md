@@ -29,6 +29,8 @@ Micro services should interact with each other via API gateway for below reasons
 * Fault Tolerance - Configure some default response if the actual service is not available
 * Service Aggregation - Aggregate several different services as one service call for an external caller
 
+![zuul filter](https://user-images.githubusercontent.com/6800366/43877693-aadbe44e-9bde-11e8-8873-ad0f64f9be61.png)
+
 
 ## Distributed Tracing 
 * Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.

@@ -8,6 +8,7 @@
 * This can be mitigated using Ribbon LB. @RibbonClient(name = "currency-exchange-service")
 * Ribbon brings in a centralized way to define the list of servers in application properties. Ex: currency-exchange-service.ribbon.listOfServers=http://localhost:8000, http://localhost:8001
 * This is still a static list of servers and not dynamically managed.
+* To use a different LB apart from the default Round Robin check here (https://github.com/Netflix/ribbon/wiki/Working-with-load-balancers#common-rules).
 
 ![ribbon lb](https://user-images.githubusercontent.com/6800366/40484769-55804472-5f7a-11e8-8b68-89f462f6eb39.PNG)
 

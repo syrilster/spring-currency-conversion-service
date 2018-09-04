@@ -22,7 +22,7 @@
 * Amazon ECS create a cluster using EC2 linux and networking and proceee to finish the other config values like desired instances, VPC and subnet details. Remember to choose a key pair as this is required to SSH to EC2 instance created by the container.
 * The above step will create an ECS instance with EC2 instances up and running as per the desired configuration.
 * Create a new task defintion to run the application using the above created instances. This is where the docker image details from the ECR needs to be provided.
-* The task definition could be configured via the below JSON.
+* The task definition could be configured via the below JSON in the console or the CLI.
     ```
   {
      "family":"currency-exchange-service",
@@ -54,4 +54,9 @@
      ]
    }
       
+    ```
+    
+    ```
+    aws ecs register-task-definition --cli-input-json file://currency-exchange-service-task-definition.json
+    
     ```

@@ -1,8 +1,7 @@
-## Steps to move application to AWS using a Docker image
+## Steps to move application to AWS ECS using a Docker image
 * Build a docker image using spotify maven plugin: Update the pom.xml with the plugin details and remember to change the image name.
 
   ```
-  update the pom.xml with the plugin from spotify. Remember to change the image name
   mvn clean
   mvn package
   mvn docker:build

@@ -11,3 +11,12 @@
 * Docker push to ECS: No credential auth error
   * Run the below command: eval $(aws ecr get-login --no-include-email | sed 's|https://||') and try again.
   * You have authenticated to push to a repository on the wrong AWS account. Do aws configure again with the correct account and execute the push commands.
+* Create a security group for the ECS migration: 
+  ```
+  aws ec2 create-security-group --group-name SpringBootAppECS --description "ECS security group for the spring boot app"
+  ```
+* Create a cloud watch log group to check application logs:
+  ```
+  aws logs create-log-group --log-group-name currency-exchange-service-cloudwatch --region us-east-2
+  ```
+*

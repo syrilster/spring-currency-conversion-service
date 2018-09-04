@@ -19,4 +19,39 @@
   ```
   aws logs create-log-group --log-group-name currency-exchange-service-cloudwatch --region us-east-2
   ```
-*
+* Amazon ECS create a cluster using EC2 linux and networking and proceee to finish the other config values like desired instances, VPC and subnet details. Remember to choose a key pair as this is required to SSH to EC2 instance created by the container.
+* The above step will create an ECS instance with EC2 instances up and running as per the desired configuration.
+* Create a new task defintion to run the application using the above created instances. This is where the docker image details from the ECR needs to be provided.
+* The task definition could be configured via the below JSON.
+    ```
+  {
+     "family":"currency-exchange-service",
+     "containerDefinitions":[
+        {
+           "name":"web",
+           "image":"171551218701.dkr.ecr.us-east-2.amazonaws.com/currency-exchange-service:latest",
+           "cpu":128,
+           "memoryReservation":128,
+           "portMappings":[
+              {
+                 "containerPort":8000,
+                 "hostPort":8000
+              }
+           ],
+           "logConfiguration":{
+              "logDriver":"awslogs",
+              "options":{
+                 "awslogs-group":"currency-exchange-service-cloudwatch",
+                 "awslogs-region":"us-east-2",
+                 "awslogs-stream-prefix":"currency-exchange-service-cloudwatch"
+              }
+           },
+           "command":[
+
+           ],
+           "essential":true
+        }
+     ]
+   }
+      
+    ```

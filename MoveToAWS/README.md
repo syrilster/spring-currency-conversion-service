@@ -60,3 +60,6 @@
     aws ecs register-task-definition --cli-input-json file://currency-exchange-service-task-definition.json
     
     ```
+ * Once the task definition is in Active state, go ahead and associated this task to the cluster created previously.
+ * Navigate to cluster -> Task tab -> Run new task and complete the configuration.
+ * Hit the application URL and then view the logs in cloud watch logs group. A new stream will be created per application instance.

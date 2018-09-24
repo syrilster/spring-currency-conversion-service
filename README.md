@@ -5,6 +5,22 @@
 ## Final Endpoints
 * Currency conversion Service: http://localhost:8765/currency-conversion-service/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}
 * Currency Exchange Service: http://localhost:8765/currency-exchange-service/currency-exchange/from/{from}/to/{to}
+* After adding **Zuul routes** to pick the service names as per the URL hit: This is to skip the application name that had to be specified in the URL:
+  ```
+  zuul:
+  routes:
+    currency-exchange-service:
+      path: /currency-exchange/**
+      serviceId: currency-exchange-service
+      strip-prefix: false
+    currency-conversion-service:
+        path: /currency-converter/**
+        serviceId: currency-conversion-service
+        strip-prefix: false
+  ```
+* **Simplified URL's**:
+    * Currency conversion Service: http://localhost:8765/currency-converter/from/{from}/to/{to}/quantity/{quantity}
+    * Currency Exchange Service: http://localhost:8765/currency-exchange/from/{from}/to/{to}
 
 ## Using Ribbon to Loadbalance between the currency exchange Micro Services.
 * Using Feign Client we were able to set up a  proxy between services. (@FeignClient(name = "currency-exchange-service", url = "localhost:8000")).

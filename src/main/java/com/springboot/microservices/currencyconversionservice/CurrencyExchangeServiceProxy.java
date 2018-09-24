@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CurrencyExchangeServiceProxy {
     //@GetMapping("/currency-exchange/from/{from}/to/{to}")
     //To execute the request via Zuul. i.e  "http://localhost:8765/{application-name}/{uri}"
-    @GetMapping("/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
+    @GetMapping("/currency-exchange/from/{from}/to/{to}")
     CurrencyConverter retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
 }

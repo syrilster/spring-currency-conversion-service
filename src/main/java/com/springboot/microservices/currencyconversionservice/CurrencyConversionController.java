@@ -21,7 +21,7 @@ public class CurrencyConversionController {
     @Autowired
     private CurrencyExchangeServiceProxy proxy;
 
-    @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
+    @GetMapping("/currency-converter-rest-template/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConverter retrieveExchangeValue(@PathVariable String from, @PathVariable String to,
                                                    @PathVariable BigDecimal quantity) {
         Map<String, String> uriVariables = new HashMap<>();
@@ -36,7 +36,7 @@ public class CurrencyConversionController {
                 quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
     }
 
-    @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
+    @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConverter retrieveExchangeValueFeign(@PathVariable String from, @PathVariable String to,
                                                         @PathVariable BigDecimal quantity) {
         CurrencyConverter response = proxy.retrieveExchangeValue(from, to);

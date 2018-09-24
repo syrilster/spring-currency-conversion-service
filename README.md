@@ -2,7 +2,7 @@
 * This is a classic example of a currency converter service which will take a currency "from" and "to" as the input and convert it to actual values. Ex: Convert USD to INR.
 * This makes use of the currency exchange microservice to get the exchange rate(conversion multiple) and then proceed with the calculation.
 
-## Endpoints
+## Final Endpoints
 * Currency conversion Service: http://localhost:8765/currency-conversion-service/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}
 * Currency Exchange Service: http://localhost:8765/currency-exchange-service/currency-exchange/from/{from}/to/{to}
 

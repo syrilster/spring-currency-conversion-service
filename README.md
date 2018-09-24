@@ -26,12 +26,13 @@
 
 
 ## API Gateways (Zuul)
-Micro services should interact with each other via API gateway for below reasons:
+* An API Gateway, aka Edge Service, provides a unified interface for a set of microservices so that clients no need to know about all the details of microservices internals.
+* Micro services should interact with each other via API gateway for below reasons:
 
-* Common place for Authentication, Authorization and security
-* Rate limits
-* Fault Tolerance - Configure some default response if the actual service is not available
-* Service Aggregation - Aggregate several different services as one service call for an external caller
+   * Common place for Authentication, Authorization and security
+   * Rate limits
+   * Fault Tolerance - Configure some default response if the actual service is not available
+   * Service Aggregation - Aggregate several different services as one service call for an external caller
 
 **Requesting a microservice using zuul API gateway endpoint**
 

@@ -35,7 +35,7 @@ Micro services should interact with each other via API gateway for below reasons
 
 **Requesting a microservice using zuul API gateway endpoint**
 
-http://localhost:8765/{application-name}/{uri}
+Format: http://localhost:8765/{application-name}/{uri}
 
 Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/USD/to/INR
 

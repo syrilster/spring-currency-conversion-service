@@ -2,9 +2,25 @@
 * This is a classic example of a currency converter service which will take a currency "from" and "to" as the input and convert it to actual values. Ex: Convert USD to INR.
 * This makes use of the currency exchange microservice to get the exchange rate(conversion multiple) and then proceed with the calculation.
 
-## Endpoints
+## Final Endpoints
 * Currency conversion Service: http://localhost:8765/currency-conversion-service/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}
 * Currency Exchange Service: http://localhost:8765/currency-exchange-service/currency-exchange/from/{from}/to/{to}
+* After adding **Zuul routes** to pick the service names as per the URL hit: This is to skip the application name that had to be specified in the URL:
+  ```
+  zuul:
+  routes:
+    currency-exchange-service:
+      path: /currency-exchange/**
+      serviceId: currency-exchange-service
+      strip-prefix: false
+    currency-conversion-service:
+        path: /currency-converter/**
+        serviceId: currency-conversion-service
+        strip-prefix: false
+  ```
+* **Simplified URL's**:
+    * Currency conversion Service: http://localhost:8765/currency-converter/from/{from}/to/{to}/quantity/{quantity}
+    * Currency Exchange Service: http://localhost:8765/currency-exchange/from/{from}/to/{to}
 
 ## Using Ribbon to Loadbalance between the currency exchange Micro Services.
 * Using Feign Client we were able to set up a  proxy between services. (@FeignClient(name = "currency-exchange-service", url = "localhost:8000")).
@@ -26,16 +42,17 @@
 
 
 ## API Gateways (Zuul)
-Micro services should interact with each other via API gateway for below reasons:
+* An API Gateway, aka Edge Service, provides a unified interface for a set of microservices so that clients no need to know about all the details of microservices internals.
+* Micro services should interact with each other via API gateway for below reasons:
 
-* Common place for Authentication, Authorization and security
-* Rate limits
-* Fault Tolerance - Configure some default response if the actual service is not available
-* Service Aggregation - Aggregate several different services as one service call for an external caller
+   * Common place for Authentication, Authorization and security
+   * Rate limits
+   * Fault Tolerance - Configure some default response if the actual service is not available
+   * Service Aggregation - Aggregate several different services as one service call for an external caller
 
 **Requesting a microservice using zuul API gateway endpoint**
 
-http://localhost:8765/{application-name}/{uri}
+Format: http://localhost:8765/{application-name}/{uri}
 
 Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/USD/to/INR
 

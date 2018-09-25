@@ -76,5 +76,29 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
 ![zipkin distributed tracing](https://user-images.githubusercontent.com/6800366/40572726-5b37e85e-60d1-11e8-853d-7640058493f7.PNG)
 
 
+## Enabling Cross-Origin Resource Sharing (CORS)
+* In many cases, the host that serves the JS (e.g. localhost:3000) is different from the host that serves the data (e.g. localhost:8765). The request will get an error: **No 'Access-Control-Allow-Origin' header is present on the requested resource.** In such a case, CORS enables the cross-domain communication.
+* @CrossOrigin on a @RequestMapping-Annotated Handler Method
+  ```
+    @CrossOrigin
+    @RequestMapping("/{id}")
+    public Account getAccountDetails(@PathVariable Long id) {
+        // ...
+    }
+  ```
+* @CrossOrigin on the Controller i.e. at the class level
+* Global CORS configuration to handle all the methods request calls: 
+  ```
+    @Configuration
+    @EnableWebMvc
+    public class ApplicationCORS implements WebMvcConfigurer {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+          registry.addMapping("/**");
+      }
+    }
+  ```
+
+
 
 

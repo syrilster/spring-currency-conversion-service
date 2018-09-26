@@ -79,9 +79,9 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
 * Enable sleuth to have unique id's for each request called log correlation ID's. This unique Id enables us to trace a single request till the end as the same id is used by sleuth. 
   ```
   <dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+  </dependency>
   ```
   * Adding a sampling policy to manage volume. Add the below code in the main class. This sampler logs ass the request, however a custom logic can be provided here.
     ```
@@ -90,6 +90,8 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
       return Sampler.ALWAYS_SAMPLE;
     }
     ```
+* If spring-cloud-sleuth-zipkin is on the classpath, the app generates and collects Zipkin-compatible traces. By default, it sends them over HTTP to a Zipkin server on localhost (port 9411). You can configure the location of the service by setting spring.zipkin.baseUrl. 
+   * If you depend on spring-rabbit, your app sends traces to a RabbitMQ broker instead of HTTP.
 * Download the zipkin jar from open zipkin page
 * Install and start rabbit MQ.
   ```

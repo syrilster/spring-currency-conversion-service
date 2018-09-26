@@ -83,7 +83,7 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
   brew install rabbitmq
   Start RabbitMQ service using: /usr/local/sbin/rabbitmq-server
   ```
-* Start zipkin with a config of the Rabbit MQ details
+* Start zipkin with a config of the Rabbit MQ details to allow Zipkin to listen messages on the MQ.
   ```
   RABBIT_URI=amqp://localhost java -jar zipkin-server-2.11.5-exec.jar
   ```

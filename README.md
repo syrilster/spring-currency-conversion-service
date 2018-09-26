@@ -75,7 +75,21 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
 
 ![zipkin distributed tracing](https://user-images.githubusercontent.com/6800366/40572726-5b37e85e-60d1-11e8-853d-7640058493f7.PNG)
 
-## Setting up Zipkin
+## Setting up distributed tracing using Zipkin
+* Enable sleuth to have unique id's for each request called log correlation ID's. This unique Id enables us to trace a single request till the end as the same id is used by sleuth. 
+  ```
+  <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+  ```
+  * Adding a sampling policy to manage volume. Add the below code in the main class. This sampler logs ass the request, however a custom logic can be provided here.
+    ```
+    @Bean
+    public Sampler defaultSampler() {
+      return Sampler.ALWAYS_SAMPLE;
+    }
+    ```
 * Download the zipkin jar from open zipkin page
 * Install and start rabbit MQ.
   ```
@@ -87,6 +101,19 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
   ```
   RABBIT_URI=amqp://localhost java -jar zipkin-server-2.11.5-exec.jar
   ```
+* Add the below pom.xml dependencies for zipkin and rabbitmq bus to all the required micro services.
+  ```
+  <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+  ```
+* Start all the microservices and make a request to find the trace in Zipkin dashboard.
 
 
 ## Enabling Cross-Origin Resource Sharing (CORS)

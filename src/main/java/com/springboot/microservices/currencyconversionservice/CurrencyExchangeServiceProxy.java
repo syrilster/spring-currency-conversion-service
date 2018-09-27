@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "netflix-zuul-api-gateway-server")
 /* If only using Ribbon then have the Feign Client without the URL
 @FeignClient(name = "currency-exchange-service")*/
-@RibbonClient(name = "currency-exchange-service")
+//@RibbonClient(name = "currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
     //@GetMapping("/currency-exchange/from/{from}/to/{to}")
     //To execute the request via Zuul. i.e  "http://localhost:8765/{application-name}/{uri}"

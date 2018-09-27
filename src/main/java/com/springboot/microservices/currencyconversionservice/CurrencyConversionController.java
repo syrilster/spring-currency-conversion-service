@@ -42,7 +42,7 @@ public class CurrencyConversionController {
     public CurrencyConverter retrieveExchangeValueFeign(@PathVariable String from, @PathVariable String to,
                                                         @PathVariable BigDecimal quantity) {
         CurrencyConverter response = proxy.retrieveExchangeValue(from, to);
-        logger.info("{} " + response);
+        logger.info("Inside Currency Conversion {} " + response);
         return new CurrencyConverter(response.getId(), from, to, response.getConversionMultiple(),
                 quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
     }

@@ -75,6 +75,48 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
 
 ![zipkin distributed tracing](https://user-images.githubusercontent.com/6800366/40572726-5b37e85e-60d1-11e8-853d-7640058493f7.PNG)
 
+## Setting up distributed tracing using Zipkin
+* Enable sleuth to have unique id's for each request called log correlation ID's. This unique Id enables us to trace a single request till the end as the same id is used by sleuth. 
+  ```
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+  </dependency>
+  ```
+  * Adding a sampling policy to manage volume. Add the below code in the main class. This sampler logs ass the request, however a custom logic can be provided here.
+    ```
+    @Bean
+    public Sampler defaultSampler() {
+      return Sampler.ALWAYS_SAMPLE;
+    }
+    ```
+* If spring-cloud-sleuth-zipkin is on the classpath, the app generates and collects Zipkin-compatible traces. By default, it sends them over HTTP to a Zipkin server on localhost (port 9411). You can configure the location of the service by setting spring.zipkin.baseUrl. 
+   * If you depend on spring-rabbit, your app sends traces to a RabbitMQ broker instead of HTTP.
+* Download the zipkin jar from open zipkin page
+* Install and start rabbit MQ.
+  ```
+  brew update
+  brew install rabbitmq
+  Start RabbitMQ service using: /usr/local/sbin/rabbitmq-server
+  ```
+* Start zipkin with a config of the Rabbit MQ details to allow Zipkin to listen messages on the MQ.
+  ```
+  RABBIT_URI=amqp://localhost java -jar zipkin-server-2.11.5-exec.jar
+  ```
+* Add the below pom.xml dependencies for zipkin and rabbitmq bus to all the required micro services.
+  ```
+  <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+  ```
+* Start all the microservices and make a request to find the trace in Zipkin dashboard.
+
 
 ## Enabling Cross-Origin Resource Sharing (CORS)
 * In many cases, the host that serves the JS (e.g. localhost:3000) is different from the host that serves the data (e.g. localhost:8765). The request will get an error: **No 'Access-Control-Allow-Origin' header is present on the requested resource.** In such a case, CORS enables the cross-domain communication.

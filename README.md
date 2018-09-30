@@ -22,6 +22,11 @@
     * Currency conversion Service: http://localhost:8765/currency-converter/from/{from}/to/{to}/quantity/{quantity}
     * Currency Exchange Service: http://localhost:8765/currency-exchange/from/{from}/to/{to}
 
+## Feign Client
+* Feign is an HTTP client created by Netflix to make HTTP communications easier. It is integrated to Spring Boot with the spring-cloud-starter-feign starter.
+* To create a client to consume an HTTP service, an interface annotated with @FeignClient must be created. 
+* Endpoints can be declared in this interface using an API that is very close to the Spring MVC API. The @EnableFeignClients annotation must also be added to a Spring Configuration class.
+
 ## Using Ribbon to Loadbalance between the currency exchange Micro Services.
 * Using Feign Client we were able to set up a  proxy between services. (@FeignClient(name = "currency-exchange-service", url = "localhost:8000")).
 * Above annotation has the server URL hardcoded. This is an issue if we want to have more instances of the same microservices as the URL changes.
@@ -141,6 +146,25 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
     }
   ```
 
-
+## Hystrix Circuit Breaker
+* Provides latency tolerance and fault tolerance logic.
+* Overview about the circuit breaker pattern here: https://github.com/syrilster/DesignPatterns/tree/master/DesignPrinciples/CircuitBreakerPattern
+* Enable using:
+  ```
+  feign:
+   hystrix:
+    enabled: true
+  ```
+* Two approaches:
+  * Using Hystrix and creating a method level fallback.
+    ```
+    Enable Hystrix at the application main class using annotation @EnableHystrix
+    
+    Add the below annotation and define a fallback method like below
+    @HystrixCommand(fallbackMethod = "retrieveExchangeValueDefault")
+     public CurrencyConverter retrieveExchangeValueFeign()
+     
+     ```
+  * Using circuit breaker applied at the Feign annotation level.
 
 

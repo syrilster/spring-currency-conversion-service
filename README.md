@@ -178,10 +178,10 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
      Then implement the fallback logic in the class like below:
      @Component
      public class CurrencyExchangeDefault implements CurrencyExchangeServiceProxy {
-	 @Override
-	 public CurrencyConverter retrieveExchangeValue(String from, String to) {
-	  /*Some implementation*/
-	 }
+		 @Override
+		 public CurrencyConverter retrieveExchangeValue(String from, String to) {
+		  /*Some implementation*/
+		 }
      }
     ```
 

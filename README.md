@@ -169,11 +169,11 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
     ```
      Enable Hystrix at the application main class using annotation @EnableCircuitBreaker
      
-        @FeignClient(name = "netflix-zuul-api-gateway-server", fallback = CurrencyExchangeDefault.class)
-	public interface CurrencyExchangeServiceProxy {
-	    @GetMapping("/currency-exchange/from/{from}/to/{to}")
-	    CurrencyConverter retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
-	}
+     @FeignClient(name = "netflix-zuul-api-gateway-server", fallback = CurrencyExchangeDefault.class)
+     public interface CurrencyExchangeServiceProxy {
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	CurrencyConverter retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
+     }
 	
      Then implement the fallback logic in the class like below:
      @Component

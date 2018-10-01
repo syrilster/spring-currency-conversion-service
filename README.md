@@ -166,5 +166,23 @@ Example: http://localhost:8765/currency-exchange-service/currency-exchange/from/
      
      ```
   * Using circuit breaker applied at the Feign annotation level.
+    ```
+     Enable Hystrix at the application main class using annotation @EnableCircuitBreaker
+     
+        @FeignClient(name = "netflix-zuul-api-gateway-server", fallback = CurrencyExchangeDefault.class)
+	public interface CurrencyExchangeServiceProxy {
+	    @GetMapping("/currency-exchange/from/{from}/to/{to}")
+	    CurrencyConverter retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
+	}
+	
+     Then implement the fallback logic in the class like below:
+     @Component
+     public class CurrencyExchangeDefault implements CurrencyExchangeServiceProxy {
+	 @Override
+	 public CurrencyConverter retrieveExchangeValue(String from, String to) {
+	  /*Some implementation*/
+	 }
+     }
+    ```
 
 

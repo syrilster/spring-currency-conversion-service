@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @CrossOrigin
 @RestController
@@ -39,11 +40,34 @@ public class CurrencyConversionController {
     }
 
     @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
+    //@HystrixCommand(fallbackMethod = "retrieveExchangeValueDefault")
     public CurrencyConverter retrieveExchangeValueFeign(@PathVariable String from, @PathVariable String to,
                                                         @PathVariable BigDecimal quantity) {
-        CurrencyConverter response = proxy.retrieveExchangeValue(from, to);
-        logger.info("Inside Currency Conversion {} " + response);
-        return new CurrencyConverter(response.getId(), from, to, response.getConversionMultiple(),
-                quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
+        try {
+            CurrencyConverter response = proxy.retrieveExchangeValue(from, to);
+            logger.info("Inside Currency Conversion {} " + response);
+            return new CurrencyConverter(response.getId(), from, to, response.getConversionMultiple(),
+                    quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
+        } catch (Exception exception) {
+            throw new RuntimeException();
+        }
+    }
+
+    public CurrencyConverter retrieveExchangeValueDefault(@PathVariable String from, @PathVariable String to,
+                                                          @PathVariable BigDecimal quantity) {
+        logger.info("Inside Currency Conversion fallback method");
+        Long id = new Random().nextLong();
+        CurrencyConverter currencyConverter = null;
+        if ("USD".equalsIgnoreCase(from)) {
+            currencyConverter = new CurrencyConverter(id, from, to,
+                    new BigDecimal(73.1), BigDecimal.ZERO, BigDecimal.ZERO, 8000);
+        } else if ("EUR".equalsIgnoreCase(from)) {
+            currencyConverter = new CurrencyConverter(id, from, to,
+                    new BigDecimal(85.18), BigDecimal.ZERO, BigDecimal.ZERO, 8000);
+        } else if ("AUD".equalsIgnoreCase(from)) {
+            currencyConverter = new CurrencyConverter(id, from, to,
+                    new BigDecimal(52.6), BigDecimal.ZERO, BigDecimal.ZERO, 8000);
+        }
+        return currencyConverter;
     }
 }

@@ -12,7 +12,7 @@ subsequent request made to the server needs to be again checked for authorizatio
   * Receive the response from Redis/DB with the user details.
   * Check the roles/access for this user and fulfill the request accordingly.
   * Return the response.
-* JWT Token workflow:
+* JWT Token workflow: (**Server doesn’t need to lookup DB/Cache for user details as it is embedded inside the token itself**)
   * Pass JWT Token along with the request.
   * Verify JWT and get embedded user. (Performant as no need for a user lookup)
   * Check the roles/access for this user and fulfill the request accordingly.

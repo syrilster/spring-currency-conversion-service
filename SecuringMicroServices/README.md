@@ -41,6 +41,6 @@ The token has 3 parts:
 * @EnableWebSecurity: This is the primary spring security annotation that is used to enable web security in a project.
 * @EnableGlobalMethodSecurity: This is used to enable method level security based on annotations
 * Have a class to which extends the WebSecurityConfigurerAdapter:
-  <img width="1042" alt="screen shot 2018-10-04 at 2 47 32 pm" src="https://user-                images.githubusercontent.com/6800366/46453380-a0db5600-c7e4-11e8-9103-e175dc8745df.png">
+<img width="1042" alt="screen shot 2018-10-04 at 2 47 32 pm" src="https://user-images.githubusercontent.com/6800366/46453380-a0db5600-c7e4-11e8-9103-e175dc8745df.png">
 
 

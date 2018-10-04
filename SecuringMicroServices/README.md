@@ -42,5 +42,10 @@ The token has 3 parts:
 * **@EnableGlobalMethodSecurity**: This is used to enable method level security based on annotations
 * Have a class to which extends the WebSecurityConfigurerAdapter and implement the configure() method to accept valid requests and handle csrf.
 * **JwtAuthenticationEntryPoint**: This class is used to return a 401 unauthorized error message to the clients that try to access a protected resource without proper authentication. It implements Spring Security’s AuthenticationEntryPoint interface.
+* Implement a filter that -
+  * reads JWT authentication token from the Authorization header of all the requests
+  * validates the token
+  * loads the user details associated with that token.
+  * Sets the user details in Spring Security’s SecurityContext. Spring Security uses the user details to perform authorization checks. We can also access the user details stored in the SecurityContext in our controllers to perform our business logic.
 
 

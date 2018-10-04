@@ -40,8 +40,7 @@ The token has 3 parts:
 * After you added the above dependency check server log and observe that spring has generated a default password.
 * **@EnableWebSecurity**: This is the primary spring security annotation that is used to enable web security in a project.
 * **@EnableGlobalMethodSecurity**: This is used to enable method level security based on annotations
-* Have a class to which extends the WebSecurityConfigurerAdapter:
-<img width="1042" alt="screen shot 2018-10-04 at 2 47 32 pm" src="https://user-images.githubusercontent.com/6800366/46453380-a0db5600-c7e4-11e8-9103-e175dc8745df.png">
+* Have a class to which extends the WebSecurityConfigurerAdapter and implement the configure() method to accept valid requests and handle csrf.
 * **JwtAuthenticationEntryPoint**: This class is used to return a 401 unauthorized error message to the clients that try to access a protected resource without proper authentication. It implements Spring Security’s AuthenticationEntryPoint interface.
 
 

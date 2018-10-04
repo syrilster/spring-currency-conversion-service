@@ -24,7 +24,9 @@ The token has 3 parts:
 <header>.<payload>.<signature>
 ```
 * Header: A JSON(Base64 encoded) that has info about algorithm used(like HS256, RSA).
-* Payload: A JSON(Base64 encoded) that has info about the user. (Like username, password, email etc)
+* Payload: A JSON(Base64 encoded) that has info about the user. Typically this is:
+  * User Id, Username, Email etc.
+  * Any ACL like: isAdmin, isManager etc.
 * Signature: A String that was generated using #1 + #2 + “a secret” (that only the server knows), using the algorithm mentioned in #1.
 
 

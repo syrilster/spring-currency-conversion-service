@@ -29,4 +29,18 @@ The token has 3 parts:
   * Any ACL like: isAdmin, isManager etc.
 * Signature: A String that was generated using #1 + #2 + “a secret” (that only the server knows), using the algorithm mentioned in #1.
 
+## Steps involved in configuring Spring Security + JWT tokens
+* Add the below dependency in pom to enable spring security:
+  ```
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+  ```
+* After you added the above dependency check server log and observe that spring has generated a default password.
+* @EnableWebSecurity: This is the primary spring security annotation that is used to enable web security in a project.
+* @EnableGlobalMethodSecurity: This is used to enable method level security based on annotations
+* Have a class to which extends the WebSecurityConfigurerAdapter:
+  <img width="1042" alt="screen shot 2018-10-04 at 2 47 32 pm" src="https://user-                images.githubusercontent.com/6800366/46453380-a0db5600-c7e4-11e8-9103-e175dc8745df.png">
+
 

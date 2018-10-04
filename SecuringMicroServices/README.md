@@ -6,5 +6,16 @@
 * HTTP is a stateless protocol and once you login (using a username/pass or identity provider like FB or Google), every 
 subsequent request made to the server needs to be again checked for authorization/authentication access.
 * One way to do this is via “session” cookies and other way is to use “auth” tokens.
+* Session Id workflow:
+  * Browser passes the session_id info along with the request header.
+  * Server looks up this session_id info to find a user from a in-memory store like Redis or a DB.
+  * Receive the response from Redis/DB with the user details.
+  * Check the roles/access for this user and fulfill the request accordingly.
+  * Return the response.
+* JWT Token workflow:
+  * Pass JWT Token along with the request.
+  * Verify JWT and get embedded user. (Performant as no need for a user lookup)
+  * Check the roles/access for this user and fulfill the request accordingly.
+  * Return the response.
 
 

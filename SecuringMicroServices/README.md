@@ -19,7 +19,10 @@ subsequent request made to the server needs to be again checked for authorizatio
   * Return the response.
   
 ## What Does A JWT Token look like?
-The token has 3 parts: <header>,<payload>,<signature>
+The token has 3 parts: 
+```
+<header>.<payload>.<signature>
+```
 * Header: A JSON(Base64 encoded) that has info about algorithm used(like HS256, RSA).
 * Payload: A JSON(Base64 encoded) that has info about the user. (Like username, password, email etc)
 * Signature: A String that was generated using #1 + #2 + “a secret” (that only the server knows), using the algorithm mentioned in #1.

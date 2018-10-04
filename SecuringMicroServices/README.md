@@ -37,6 +37,14 @@ The token has 3 parts:
     <artifactId>spring-boot-starter-security</artifactId>
   </dependency>
   ```
+* Add dependency for JWT
+  ```
+   <dependency>
+     <groupId>io.jsonwebtoken</groupId>
+     <artifactId>jjwt</artifactId>
+     <version>0.7.0</version>
+   </dependency>
+  ```
 * After you added the above dependency check server log and observe that spring has generated a default password.
 * **@EnableWebSecurity**: This is the primary spring security annotation that is used to enable web security in a project.
 * **@EnableGlobalMethodSecurity**: This is used to enable method level security based on annotations

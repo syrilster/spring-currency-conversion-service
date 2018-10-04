@@ -45,7 +45,7 @@ public class CurrencyConversionController {
                                                         @PathVariable BigDecimal quantity) {
         try {
             CurrencyConverter response = proxy.retrieveExchangeValue(from, to);
-            logger.info("Inside Currency Conversion {} " + response);
+            logger.info("Inside Currency Conversion method: " + response);
             return new CurrencyConverter(response.getId(), from, to, response.getConversionMultiple(),
                     quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
         } catch (Exception exception) {

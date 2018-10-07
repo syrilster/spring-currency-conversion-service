@@ -59,4 +59,7 @@ The token has 3 parts:
   * Sets the user details in Spring Security’s SecurityContext. Spring Security uses the user details to perform authorization checks. We can also access the user details stored in the SecurityContext in our controllers to perform our business logic.
  * Use postman to hit a POST request to URL http://localhost:8765/login by sending the username and password as a JSON. This will return the JWT token to be used for the actual request.
 
+## Additional Read
+* https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-authentication-with-jwt-part-3-fafc9d7187e8
+
 
